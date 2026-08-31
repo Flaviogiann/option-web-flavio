@@ -9,7 +9,7 @@ if (!moinsDeMouvement) {
       start: 'top top',
       end: 'bottom bottom',
       pin: '.epingle__cadre',
-      scrub: 1
+      scrub: 0.5
     }
   });
 
