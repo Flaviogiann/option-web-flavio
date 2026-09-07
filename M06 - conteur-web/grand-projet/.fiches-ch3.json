@@ -1,0 +1,58 @@
+[
+  {
+    "nom": "ch3-1-cylindre",
+    "titre": "CIMA mg 8298.jpg",
+    "octetsOriginal": 5053355,
+    "dimOriginal": "4368x2912",
+    "octetsRecupere": 1232321,
+    "code": 200,
+    "auteur": "Rama",
+    "licence": "CC BY-SA 2.0 fr",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en",
+    "date": "2007-09-30",
+    "description": "CIMA museum ( Centre International de la Mécanique d'Art )",
+    "page": "https://commons.wikimedia.org/wiki/File:CIMA_mg_8298.jpg"
+  },
+  {
+    "nom": "ch3-2-disque",
+    "titre": "CIMA mg 8375.jpg",
+    "octetsOriginal": 5000390,
+    "dimOriginal": "4368x2912",
+    "octetsRecupere": 1279787,
+    "code": 200,
+    "auteur": "Rama",
+    "licence": "CC BY-SA 2.0 fr",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en",
+    "date": "2007-09-30",
+    "description": "CIMA museum ( Centre International de la Mécanique d'Art )",
+    "page": "https://commons.wikimedia.org/wiki/File:CIMA_mg_8375.jpg"
+  },
+  {
+    "nom": "ch3-3-pellicule",
+    "titre": "CIMA mg 8376.jpg",
+    "octetsOriginal": 4615541,
+    "dimOriginal": "4368x2912",
+    "octetsRecupere": 1068284,
+    "code": 200,
+    "auteur": "Rama",
+    "licence": "CC BY-SA 2.0 fr",
+    "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/fr/deed.en",
+    "date": "2007-09-30",
+    "description": "CIMA museum ( Centre International de la Mécanique d'Art )",
+    "page": "https://commons.wikimedia.org/wiki/File:CIMA_mg_8376.jpg"
+  },
+  {
+    "nom": "ch3-4-chariot",
+    "titre": "Hermes Baby Typewriter Werkentwurf.jpg",
+    "octetsOriginal": 2292551,
+    "dimOriginal": "4032x3024",
+    "octetsRecupere": 1404170,
+    "code": 200,
+    "auteur": "Manuel Schmalstieg",
+    "licence": "CC BY 4.0",
+    "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+    "date": "2026-01-15 16:52:39",
+    "description": "Hermes Baby Typewriter at Museum für Gestaltung Zurich. Produced by Paillard SA. This model entered production in 1963. It received a \"Die gute Form\" award by Schweizerischer Werkbund (SWB) in 1964.",
+    "page": "https://commons.wikimedia.org/wiki/File:Hermes_Baby_Typewriter_Werkentwurf.jpg"
+  }
+]
