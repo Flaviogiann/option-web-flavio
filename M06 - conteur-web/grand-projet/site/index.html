@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sainte-Croix — de l'usine à l'établi</title>
+  <meta name="description" content="Récit web en cinq chapitres sur Sainte-Croix, village du Jura vaudois : de la contrainte de l'hiver à l'atelier d'automates.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/recit.js"></script>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Chapitres">
+    <a class="nav__marque" href="#couverture">Sainte-Croix</a>
+    <ol class="nav__liste">
+      <li><a href="#chapitre-1">01</a></li>
+      <li><a href="#chapitre-2">02</a></li>
+      <li><a href="#chapitre-3">03</a></li>
+      <li><a href="#chapitre-4">04</a></li>
+      <li><a href="#chapitre-5">05</a></li>
+    </ol>
+  </nav>
+
+  <header class="couverture" id="couverture">
+    <p class="couverture__meta">Jura vaudois <span aria-hidden="true">·</span> Cinq chapitres</p>
+    <h1 class="couverture__titre">Sainte&#8209;Croix</h1>
+    <p class="couverture__fil">
+      Un village du Jura vaudois que la neige enferme six mois par an. Pour passer l'hiver,
+      ses paysans se sont mis à la mécanique&nbsp;— et ont fini par vendre de la musique au monde
+      entier. Puis tout s'est arrêté. Voici ce qu'il en reste.
+    </p>
+    <p class="couverture__descendre"><span class="couverture__filet" aria-hidden="true"></span>Descendre</p>
+  </header>
+
+  <main>
+
+    <section class="chapitre chapitre--scene" id="chapitre-1">
+      <div class="scene scene--hiver" data-mouvement="cadre-se-ferme">
+        <picture>
+          <source type="image/webp"
+                  srcset="../images/ch1-sainte-croix-neige-800.webp   800w,
+                          ../images/ch1-sainte-croix-neige-1200.webp 1200w,
+                          ../images/ch1-sainte-croix-neige-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="scene__image"
+               src="../images/ch1-sainte-croix-neige.jpg"
+               width="1600" height="1066" decoding="async"
+               alt="Le village de Sainte-Croix sous la neige, vu de loin depuis une pente boisée. Les maisons forment un liseré sombre serré entre la forêt et des champs entièrement blancs.">
+        </picture>
+        <div class="scene__voile" aria-hidden="true"></div>
+        <div class="scene__texte">
+          <p class="chapitre__numero">01</p>
+          <h2 class="chapitre__titre">L'hiver ferme le village</h2>
+          <p class="chapitre__ligne">Six mois par an, la neige ferme le village. Dehors, il n'y a plus rien à faire.</p>
+          <p class="chapitre__ligne">Alors le paysan pose la fourche et prend la lime. C'est l'hiver qui décide, pas le goût.</p>
+          <p class="credit">
+            Photo : <a href="https://commons.wikimedia.org/wiki/File:Sainte-Croix_et_l%27Auberson_-_img_00064.jpg">Pmau</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0">CC&nbsp;BY-SA&nbsp;4.0</a>.
+            Sainte-Croix et l'Auberson vus du Praisot, 28 janvier 2006.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapitre chapitre--film" id="chapitre-2">
+      <div class="film" data-film>
+        <picture>
+          <source media="(max-aspect-ratio: 5/8)" type="image/webp"
+                  srcset="../images/ch2-picots-peigne-telephone-406.webp 406w,
+                          ../images/ch2-picots-peigne-telephone-608.webp 608w"
+                  sizes="100vw">
+          <source type="image/webp"
+                  srcset="../images/ch2-picots-peigne-800.webp   800w,
+                          ../images/ch2-picots-peigne-1200.webp 1200w,
+                          ../images/ch2-picots-peigne-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="film__image"
+               src="../images/ch2-picots-peigne.jpg"
+               width="1200" height="676" loading="lazy" decoding="async"
+               alt="Boîte à musique ouverte, filmée de près : les picots du cylindre de laiton, tout contre les dents d'acier du peigne.">
+        </picture>
+        <video class="film__video" muted loop playsinline preload="none" aria-hidden="true">
+          <source media="(max-aspect-ratio: 5/8)" src="../images/ch2-picots-peigne-406x720.webm" type='video/webm; codecs="vp9"'>
+          <source media="(max-aspect-ratio: 5/8)" src="../images/ch2-picots-peigne-406x720.mp4"  type='video/mp4; codecs="avc1.64001F"'>
+          <source src="../images/ch2-picots-peigne-1280x720.webm" type='video/webm; codecs="vp9"'>
+          <source src="../images/ch2-picots-peigne-1280x720.mp4"  type='video/mp4; codecs="avc1.640028"'>
+        </video>
+      </div>
+      <div class="film__texte">
+        <div class="film__colonne">
+          <div class="film__entete">
+            <p class="chapitre__numero">02</p>
+            <button class="film__bouton" type="button" data-film-bouton hidden>Pause</button>
+          </div>
+          <h2 class="chapitre__titre">Une boîte qui joue toute seule</h2>
+          <p class="chapitre__ligne">Un cylindre de laiton hérissé de picots tourne contre un peigne d'acier. Chaque picot accroche une dent, et la dent sonne.</p>
+          <p class="chapitre__ligne">Un air entier tient là-dedans. Le village ne vend plus des heures de travail : il vend du son.</p>
+          <p class="credit">
+            Vidéo : <a href="https://commons.wikimedia.org/wiki/File:Cilinderspeeldoos_Nicole_Fr%C3%A8res_uit_1864,_Kijk-_en_Luistermuseum,_800030.webm">Max van der Pol, Kijk en Luistermuseum</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0">CC&nbsp;BY&#8209;SA&nbsp;4.0</a>, extrait recadré.
+            Boîte à musique à cylindre, Nicole Frères, Genève, 1864. Cylindre de 33,5&nbsp;cm, huit airs.
+          </p>
+
+          <div class="ecoute">
+            <button class="ecoute__bouton" type="button" data-ecoute-bouton hidden>
+              Écouter une boîte à musique
+            </button>
+            <audio class="ecoute__audio" data-ecoute-audio controls preload="none">
+              <source src="../images/ch2-berceuse.webm" type="audio/webm; codecs=opus">
+              <source src="../images/ch2-berceuse.m4a"  type="audio/mp4; codecs=mp4a.40.2">
+            </audio>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapitre chapitre--vitrine" id="chapitre-3">
+      <div class="vitrine__cadre">
+        <div class="chapitre__texte">
+          <p class="chapitre__numero">03</p>
+          <h2 class="chapitre__titre">Les mêmes mains, d'autres objets</h2>
+          <p class="chapitre__ligne">Le village ne s'est pas arrêté à la musique. Voici ce qui est sorti des mêmes ateliers.</p>
+        </div>
+        <div class="vitrine" data-vitrine>
+          <div class="vitrine__objet scene" data-objet="1">
+            <picture>
+              <source type="image/webp"
+                      srcset="../images/ch3-1-cylindre-800.webp   800w,
+                              ../images/ch3-1-cylindre-1200.webp 1200w,
+                              ../images/ch3-1-cylindre-1600.webp 1600w"
+                      sizes="100vw">
+              <img src="../images/ch3-1-cylindre.jpg" width="1200" height="800"
+                   loading="lazy" decoding="async" alt="Cylindre picoté et peigne d'acier. Mécanisme de boîte à musique. Musée CIMA, Sainte-Croix.">
+            </picture>
+            <div class="scene__voile" aria-hidden="true"></div>
+            <div class="vitrine__legende scene__texte">
+              <span class="vitrine__nom">Cylindre picoté et peigne d'acier</span>
+              <span class="vitrine__lieu">Mécanisme de boîte à musique. Musée CIMA, Sainte-Croix.</span>
+              <span class="credit">Photo : <a href="https://commons.wikimedia.org/wiki/File:CIMA_mg_8298.jpg">Rama</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr">CC BY-SA 2.0 fr</a>.</span>
+            </div>
+          </div>
+          <div class="vitrine__objet scene" data-objet="2">
+            <picture>
+              <source type="image/webp"
+                      srcset="../images/ch3-2-disque-800.webp   800w,
+                              ../images/ch3-2-disque-1200.webp 1200w,
+                              ../images/ch3-2-disque-1600.webp 1600w"
+                      sizes="100vw">
+              <img src="../images/ch3-2-disque.jpg" width="1200" height="800"
+                   loading="lazy" decoding="async" alt="Platine et disque, vitrine Thorens. « Thorens · Ste-Croix Suisse ». Musée CIMA, Sainte-Croix.">
+            </picture>
+            <div class="scene__voile" aria-hidden="true"></div>
+            <div class="vitrine__legende scene__texte">
+              <span class="vitrine__nom">Platine et disque, vitrine Thorens</span>
+              <span class="vitrine__lieu">« Thorens · Ste-Croix Suisse ». Musée CIMA, Sainte-Croix.</span>
+              <span class="credit">Photo : <a href="https://commons.wikimedia.org/wiki/File:CIMA_mg_8375.jpg">Rama</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr">CC BY-SA 2.0 fr</a>.</span>
+            </div>
+          </div>
+          <div class="vitrine__objet scene" data-objet="3">
+            <picture>
+              <source type="image/webp"
+                      srcset="../images/ch3-3-pellicule-800.webp   800w,
+                              ../images/ch3-3-pellicule-1200.webp 1200w,
+                              ../images/ch3-3-pellicule-1600.webp 1600w"
+                      sizes="100vw">
+              <img src="../images/ch3-3-pellicule.jpg" width="1200" height="800"
+                   loading="lazy" decoding="async" alt="Projecteur de cinéma et ses bobines. Musée CIMA, Sainte-Croix.">
+            </picture>
+            <div class="scene__voile" aria-hidden="true"></div>
+            <div class="vitrine__legende scene__texte">
+              <span class="vitrine__nom">Projecteur de cinéma et ses bobines</span>
+              <span class="vitrine__lieu">Musée CIMA, Sainte-Croix.</span>
+              <span class="credit">Photo : <a href="https://commons.wikimedia.org/wiki/File:CIMA_mg_8376.jpg">Rama</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/fr/deed.fr">CC BY-SA 2.0 fr</a>.</span>
+            </div>
+          </div>
+          <div class="vitrine__objet scene" data-objet="4">
+            <picture>
+              <source type="image/webp"
+                      srcset="../images/ch3-4-chariot-800.webp   800w,
+                              ../images/ch3-4-chariot-1200.webp 1200w,
+                              ../images/ch3-4-chariot-1600.webp 1600w"
+                      sizes="100vw">
+              <img src="../images/ch3-4-chariot.jpg" width="1200" height="800"
+                   loading="lazy" decoding="async" alt="Machine à écrire Hermes Baby, 1963. Produite par Paillard SA. Museum für Gestaltung, Zurich.">
+            </picture>
+            <div class="scene__voile" aria-hidden="true"></div>
+            <div class="vitrine__legende scene__texte">
+              <span class="vitrine__nom">Machine à écrire Hermes Baby, 1963</span>
+              <span class="vitrine__lieu">Produite par Paillard SA. Museum für Gestaltung, Zurich.</span>
+              <span class="credit">Photo : <a href="https://commons.wikimedia.org/wiki/File:Hermes_Baby_Typewriter_Werkentwurf.jpg">Manuel Schmalstieg</a>, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="chapitre__texte chapitre__ligne vitrine__chute">
+        Le cylindre devient disque, le disque devient pellicule, la pellicule devient le chariot
+        d'une machine à écrire. Les ateliers, eux, ne changent pas. Ce que Sainte-Croix exporte
+        n'a jamais été la boîte à musique : c'est la précision.
+      </p>
+    </section>
+
+    <section class="chapitre chapitre--scene chapitre--silence" id="chapitre-4">
+      <div class="scene scene--nuit">
+        <picture>
+          <source type="image/webp"
+                  srcset="../images/ch4-puce-800.webp   800w,
+                          ../images/ch4-puce-1200.webp 1200w,
+                          ../images/ch4-puce-1600.webp 1600w"
+                  sizes="100vw">
+          <img class="scene__image"
+               src="../images/ch4-puce.jpg"
+               width="1600" height="1066" loading="lazy" decoding="async"
+               alt="Une puce électronique photographiée au microscope : le circuit gravé au centre, et les fils d'argent qui le relient aux pattes du boîtier. La zone montrée mesure environ cinq millimètres sur quatre.">
+        </picture>
+        <div class="scene__voile" aria-hidden="true"></div>
+        <div class="scene__texte">
+          <p class="chapitre__numero">04</p>
+          <h2 class="chapitre__titre">Une puce remplace trois cents pièces</h2>
+          <p class="chapitre__ligne">Ce carré de silicium mesure cinq millimètres sur quatre. Il fait, pour presque rien, ce que trois cents pièces faisaient.</p>
+          <p class="chapitre__ligne">Les usines ferment. Le village se vide.</p>
+          <p class="chapitre__ligne">Ce savoir-faire n'était pas devenu mauvais. Il était devenu inutile.</p>
+          <p class="credit">
+            Photo : <a href="https://commons.wikimedia.org/wiki/File:EPROM_Microchip_SuperMacro.jpg">Zephyris</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/3.0">CC&nbsp;BY&#8209;SA&nbsp;3.0</a>, 2011.
+            Puce mémoire EPROM au microscope&nbsp;: la zone montrée mesure environ 5&nbsp;mm sur 4.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapitre chapitre--scene" id="chapitre-5">
+      <div class="scene scene--atelier" data-mouvement="cadre-se-rouvre">
+        <picture>
+          <source media="(max-aspect-ratio: 5/8)" type="image/webp"
+                  srcset="../images/ch5-automate-telephone-400.webp 400w,
+                          ../images/ch5-automate-telephone-560.webp 560w"
+                  sizes="100vw">
+          <source type="image/webp"
+                  srcset="../images/ch5-automate-960.webp   960w,
+                          ../images/ch5-automate-1280.webp 1280w"
+                  sizes="100vw">
+          <img class="scene__image"
+               src="../images/ch5-automate.jpg"
+               width="960" height="788" loading="lazy" decoding="async"
+               alt="Un androïde de François Junod vu de face, le torse grand ouvert : à la place de la poitrine, un mécanisme de laiton dense — cames, leviers, disques empilés — surmonté d'une tête aux cheveux bouclés. Derrière lui, l'atelier et ses étagères.">
+        </picture>
+        <div class="scene__voile" aria-hidden="true"></div>
+        <div class="scene__texte">
+          <p class="chapitre__numero">05</p>
+          <h2 class="chapitre__titre">Un atelier tourne encore</h2>
+          <p class="chapitre__ligne">Dans le village, François Junod fabrique toujours des automates.</p>
+          <p class="chapitre__ligne">Un seul à la fois, sur commande, comme on fait une œuvre.</p>
+          <p class="chapitre__ligne">Le geste n'a pas disparu : il a quitté l'usine pour l'atelier.</p>
+          <p class="credit">
+            Photo : <a href="https://commons.wikimedia.org/wiki/File:Androide_Pouchkine.jpg">Mario Del Curto</a>,
+            <a href="https://creativecommons.org/licenses/by-sa/4.0">CC&nbsp;BY&#8209;SA&nbsp;4.0</a>, 14&nbsp;septembre 2010.
+            Androïde de François&nbsp;Junod, Sainte-Croix, torse ouvert sur son mécanisme&nbsp;;
+            la plaque gravée, visible sur la photo, porte «&nbsp;François Junod 2006&nbsp;».
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="pied">
+    <p class="pied__ligne">Grand projet M06 — récit web</p>
+    <p class="pied__ligne">Flavio Giannattasio</p>
+  </footer>
+
+</body>
+</html>

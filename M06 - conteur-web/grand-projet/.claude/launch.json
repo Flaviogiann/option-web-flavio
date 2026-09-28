@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "recit",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Users/flavi/AppData/Local/Temp/claude/C--Users-flavi-OneDrive---Education-Vaud-Troisieme-ann-e-OPTION-WEB-option-web-flavio-M06---conteur-web-grand-projet/ae166120-0826-406f-be0e-df2252be2454/scratchpad/serveur.js",
+        "C:/Users/flavi/OneDrive - Education Vaud/Troisieme année/OPTION/WEB/option-web-flavio/M06 - conteur-web/grand-projet"
+      ],
+      "port": 5173
+    }
+  ]
+}
