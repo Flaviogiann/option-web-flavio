@@ -1,0 +1,710 @@
+/* =========================================================
+   Sainte-Croix — récit web M06
+   Thème clair. Images pleine largeur, texte posé dessus.
+   Aucune police externe, aucune bibliothèque de style.
+   Les mouvements sont tous regroupés en fin de fichier.
+   ========================================================= */
+
+:root {
+  --fond:          #f5f3ef;
+  --fond-creux:    #ebe8e2;
+  --encre:         #14171a;
+  --encre-faible:  #565e68;
+  --trait:         #dcd8d0;
+  /* Gris du texte secondaire posé sur une photo : le gris de page
+     ne tient pas le contraste une fois composé avec l'image. */
+  --encre-faible-scene: #3d444d;
+
+  /* Composantes du fond, pour les voiles posés sur les photos. */
+  --voile: 245, 243, 239;
+
+  /* Le chapitre du silence inverse tout : fond, encre, et voile des photos. */
+  --fond-nuit:  #0f1215;
+  --encre-nuit: #f1efeb;
+  --voile-nuit: 15, 18, 21;
+  --encre-faible-nuit: #b9c0c8;
+
+  --colonne: min(92vw, 42rem);
+  --bande:   min(92vw, 62rem);
+
+  /* Hauteurs de la scène. La fermée est l'état par défaut. */
+  --hauteur-fermee:  62vh;
+  --hauteur-ouverte: 100vh;
+
+  --marge: clamp(1.25rem, 5vw, 4rem);
+
+  --serif: Iowan Old Style, Palatino Linotype, Palatino, Georgia, serif;
+  --sans:  ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--encre);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+img { display: block; max-width: 100%; }
+a   { color: inherit; }
+
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+.couverture__meta,
+.chapitre__numero,
+.nav__marque,
+.nav__liste a,
+.couverture__descendre,
+.pied__ligne {
+  font-family: var(--sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* ---------- Navigation ----------
+   Fond propre plutôt qu'un mélange : au-dessus d'une photo,
+   un simple texte sombre ne garantirait aucun contraste.
+   Opacité 0,92 et pas 0,86 : la vidéo sombre du chapitre 2 passe longtemps
+   sous la barre, et à 0,86 un lien gris y tombait à 4,31:1 (pire cas mesuré). */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem var(--marge);
+  background: rgba(var(--voile), 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--trait);
+}
+
+.nav__marque { text-decoration: none; color: var(--encre); }
+
+.nav__liste {
+  display: flex;
+  gap: 1.1rem;
+  margin: 0; padding: 0;
+  list-style: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav__liste a {
+  position: relative;
+  display: block;
+  padding-bottom: 0.3rem;
+  color: var(--encre-faible);
+  text-decoration: none;
+}
+
+.nav__liste a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.nav__liste a:hover,
+.nav__liste a:focus-visible,
+.nav__liste a[aria-current="true"] { color: var(--encre); }
+
+.nav__liste a[aria-current="true"]::after { transform: scaleX(1); }
+
+/* ---------- Couverture ---------- */
+
+.couverture {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vh, 3rem);
+  width: min(92vw, 68rem);
+  margin-inline: auto;
+  padding-block: clamp(6rem, 14vh, 10rem) clamp(3rem, 8vh, 5rem);
+}
+
+.couverture__meta { margin: 0; color: var(--encre-faible); }
+
+.couverture__titre {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(3.25rem, 14vw, 10rem);
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+.couverture__fil {
+  max-width: 34rem;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 1rem + 0.7vw, 1.5rem);
+  line-height: 1.45;
+  color: var(--encre-faible);
+}
+
+.couverture__descendre {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  color: var(--encre-faible);
+}
+
+.couverture__filet { display: block; width: 3.5rem; height: 1px; background: currentColor; }
+
+/* ---------- Chapitre ---------- */
+
+.chapitre {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(2rem, 6vh, 4rem);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: clamp(4rem, 12vh, 8rem);
+}
+
+.chapitre__texte { width: var(--colonne); margin-inline: auto; }
+
+.chapitre__numero {
+  margin: 0 0 1.25rem;
+  color: var(--encre-faible);
+  font-variant-numeric: tabular-nums;
+}
+
+.chapitre__titre {
+  margin: 0 0 1.5rem;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.chapitre__ligne {
+  margin: 0 0 0.5rem;
+  font-family: var(--serif);
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.45;
+  text-wrap: pretty;   /* pas de mot seul en dernière ligne (« son. » à 390 px) */
+}
+
+.credit { font-size: 0.8125rem; line-height: 1.5; color: var(--encre-faible); }
+
+.chapitre__attente {
+  margin: 0;
+  padding-left: 1.25rem;
+  border-left: 1px solid var(--trait);
+  font-size: 0.9375rem;
+  color: var(--encre-faible);
+}
+
+/* ---------- La scène : image pleine largeur, texte dessus ---------- */
+
+.chapitre--scene { min-height: 0; padding: 0; gap: 0; display: block; }
+
+.scene {
+  --voile-actif: var(--voile);   /* le chapitre du silence le remplace par --voile-nuit */
+  position: relative;
+  width: 100%;
+  height: var(--hauteur-fermee);
+  min-height: 24rem;
+  overflow: hidden;
+  background: var(--fond-creux);
+}
+
+.scene picture { display: block; height: 100%; }
+
+.scene picture > img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Le voile garantit le contraste du texte, en haut comme en bas.
+   Sans lui, un texte sombre posé sur la forêt de la photo serait illisible. */
+.scene__voile {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Les paliers ne sont pas décoratifs : ils sont calés sur la bande de
+     texte, qui commence à 44 % de la hauteur de la scène. Le voile doit
+     donc être déjà opaque à 40 %, sinon le texte tombe sur la forêt. */
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--voile-actif), 0.50) 0%,
+    rgba(var(--voile-actif), 0)    10%,
+    rgba(var(--voile-actif), 0)    32%,
+    rgba(var(--voile-actif), 0.70) 40%,
+    rgba(var(--voile-actif), 0.90) 47%,
+    rgba(var(--voile-actif), 0.95) 60%,
+    rgba(var(--voile-actif), 0.97) 100%
+  );
+}
+
+.scene__texte {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: var(--bande);
+  margin-inline: auto;
+  padding: 0 var(--marge) clamp(1.5rem, 4vh, 2.75rem);
+}
+
+/* Gris foncé, comme les crédits : en gris de page, le numéro tombait à 4,33:1
+   sur la photo du chapitre 1 à 390 px — sous le seuil AA. */
+.scene__texte .chapitre__numero { margin-bottom: 0.9rem; color: var(--encre-faible-scene); }
+.scene__texte .chapitre__titre  { margin-bottom: 1.1rem; }
+.scene__texte .credit           { margin: 1rem 0 0; color: var(--encre-faible-scene); }
+.scene__texte .vitrine__lieu    { color: var(--encre-faible-scene); }
+
+/* Le texte sur le côté, à partir de 52rem.
+   Sur un téléphone il n'y a pas la place pour une colonne : la bande du bas
+   reste. Dès qu'il y a de la largeur, le texte quitte le bas de l'image et
+   passe à gauche ; le voile tourne d'un quart de tour avec lui, et la photo
+   se dégage entièrement sur sa droite. */
+
+@media (min-width: 52rem) {
+
+  :root {
+    --texte-scene: min(40vw, 30rem);
+    --bande-scene: calc(var(--texte-scene) + var(--marge) * 2);
+  }
+
+  /* Deux couches : le voile de lecture à gauche, calé sur la colonne de texte,
+     et un reste de voile en haut pour la barre de navigation. */
+  .scene__voile {
+    background:
+      linear-gradient(to bottom, rgba(var(--voile-actif), 0.35) 0, rgba(var(--voile-actif), 0) 14%),
+      linear-gradient(to right,
+        rgba(var(--voile-actif), 0.96) 0,
+        rgba(var(--voile-actif), 0.94) var(--bande-scene),
+        rgba(var(--voile-actif), 0)    calc(var(--bande-scene) + 18vw));
+  }
+
+  .scene__texte {
+    inset: 0 auto 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: var(--bande-scene);
+    margin: 0;
+    padding: var(--marge);
+  }
+}
+
+/* ---------- Chapitre 2 — le film ----------
+   La vidéo tient tout l'écran et reste en place ; le texte monte par-dessus.
+   Rien n'est animé ici : c'est le défilement du lecteur qui fait passer
+   le texte, et « sticky » qui garde la vidéo en place. */
+
+.chapitre--film { display: block; min-height: 0; padding: 0; }
+
+.film {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--fond-creux);
+}
+
+.film picture { display: block; height: 100%; }
+
+.film__image,
+.film__video { width: 100%; height: 100%; object-fit: cover; }
+
+/* Invisible tant qu'elle n'a pas démarré. Jusque-là on voit l'image fixe,
+   qui est exactement la première image de la vidéo : le relais ne se voit pas. */
+.film__video { position: absolute; inset: 0; opacity: 0; }
+
+.film.est-lu .film__video { opacity: 1; }
+
+/* Le voile est accroché au texte, pas à la hauteur de l'écran.
+   Une vidéo change d'image 25 fois par seconde : on ne peut pas vérifier
+   ses pixels comme ceux d'une photo. Le voile atteint donc 0,92 exactement
+   là où le texte commence, et le contraste est calculé pour le pire pixel
+   possible sous le voile : le noir. */
+.film__texte {
+  position: relative;
+  margin-top: calc(-1 * min(16rem, 40vh));
+  margin-top: calc(-1 * min(16rem, 40svh));
+  padding: 7rem 0 clamp(2.5rem, 7vh, 4.5rem);
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--voile), 0)    0,
+    rgba(var(--voile), 0.92) 7rem,
+    rgba(var(--voile), 0.96) 100%
+  );
+}
+
+.film__colonne { width: var(--bande); margin-inline: auto; padding-inline: var(--marge); }
+
+.film__entete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+}
+
+.film__entete .chapitre__numero { margin: 0; }
+
+.film__texte .chapitre__numero,
+.film__texte .credit          { color: var(--encre-faible-scene); }
+.film__texte .chapitre__titre { margin-bottom: 1.1rem; }
+.film__texte .credit          { margin: 1rem 0 0; }
+
+.film__bouton {
+  min-height: 2.75rem;            /* 44 px : une cible qu'un pouce atteint */
+  padding: 0 1.1rem;
+  border: 1px solid var(--encre);
+  border-radius: 999px;
+  background: rgba(var(--voile), 0.92);
+  color: var(--encre);
+  font: 600 0.75rem/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.film__bouton:hover { background: var(--encre); color: var(--fond); }
+
+/* ---------- Écouter une boîte à musique ----------
+   Un moment à part, et surtout PAS la bande son de la vidéo : ce qu'on entend
+   n'est pas la boîte filmée. Le bouton est séparé de celui de la vidéo et son
+   crédit le dit juste en dessous.
+
+   Sans JavaScript, c'est le lecteur audio du navigateur qui s'affiche : il
+   fonctionne, et il ne télécharge rien tant qu'on ne l'actionne pas
+   (preload="none"). Avec JavaScript, il cède la place au bouton. */
+
+.ecoute { margin-top: 1.75rem; }
+
+.ecoute__bouton {
+  min-height: 2.75rem;            /* 44 px, comme le bouton de la vidéo */
+  padding: 0 1.1rem;
+  border: 1px solid var(--encre);
+  border-radius: 999px;
+  background: rgba(var(--voile), 0.92);
+  color: var(--encre);
+  font: 600 0.75rem/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.ecoute__bouton:hover { background: var(--encre); color: var(--fond); }
+
+.ecoute__audio { display: block; width: 100%; max-width: 20rem; }
+.js-ecoute .ecoute__audio { display: none; }
+
+.ecoute__credit { margin-top: 0.8rem; }
+
+/* ---------- Chapitre 3 — la vitrine ----------
+   Par défaut : les quatre objets à la suite, chacun pleine largeur.
+   C'est la version sans mouvement : on les lit dans l'ordre. */
+
+.chapitre--vitrine {
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  gap: 0;
+  display: block;
+}
+
+.chapitre--vitrine .chapitre__texte {
+  padding-block: clamp(3rem, 9vh, 6rem) clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.vitrine { display: grid; grid-template-columns: 1fr; }
+
+.vitrine__objet { height: var(--hauteur-fermee); min-height: 22rem; }
+
+.vitrine__legende { display: flex; flex-direction: column; gap: 0.2rem; }
+
+.vitrine__nom {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  line-height: 1.2;
+  color: var(--encre);
+}
+
+.vitrine__lieu { color: var(--encre-faible); font-size: 0.9375rem; }
+
+.vitrine__chute {
+  width: var(--colonne);
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 8vh, 5rem);
+  color: var(--encre-faible);
+}
+
+/* ---------- Chapitre 4 — le silence, inversé ----------
+   Même grammaire que les chapitres 1 et 3 — image pleine fenêtre, texte en
+   colonne — mais en négatif : voile sombre, texte clair. Et aucun mouvement :
+   c'est le chapitre qui raconte l'arrêt des mécanismes. Le pire pixel sous le
+   texte n'est donc plus le noir mais le blanc ; c'est lui qui est mesuré. */
+
+.chapitre--silence { background: var(--fond-nuit); color: var(--encre-nuit); }
+
+/* La section mesure DEUX écrans, et la scène se colle en haut du premier.
+   Conséquence : on défile un écran entier sans quitter le chapitre, et sans
+   que rien ne bouge. Le lecteur garde la main à chaque instant — il peut
+   remonter, sauter au chapitre 5 par le menu, ou rester là.
+
+   C'est l'inverse d'un verrou : on ne bloque pas le défilement, on donne au
+   chapitre plus de distance à parcourir. Un vrai verrou (preventDefault sur la
+   molette) casserait le clavier et contredirait la règle du chapitre :
+   « le lecteur doit pouvoir rester aussi longtemps qu'il veut ».
+
+   Et ça ne contredit pas « aucun mouvement » : rien n'est animé, aucune
+   propriété ne change. La scène reste simplement immobile pendant qu'on défile,
+   ce qui rend le silence du chapitre actif au lieu de passif. */
+
+.chapitre--silence {
+  height: 200vh;
+  height: 200svh;
+}
+
+.scene--nuit {
+  --voile-actif: var(--voile-nuit);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  background: var(--fond-nuit);
+}
+
+.scene--nuit .scene__texte { color: var(--encre-nuit); }
+
+.scene--nuit .scene__texte .chapitre__numero,
+.scene--nuit .scene__texte .credit { color: var(--encre-faible-nuit); }
+.chapitre--silence .chapitre__numero,
+.chapitre--silence .chapitre__attente { color: #98a0a9; }
+.chapitre--silence .chapitre__attente { border-left-color: #2a3138; }
+
+
+/* ---------- Chapitre 5 — l'atelier ----------
+   Le dernier chapitre reprend le geste du premier, à l'envers : le cadre se
+   rouvre au lieu de se fermer. Même élément, même mesure — 62 % et 100 % —,
+   sens inverse. L'état par défaut est donc ici le cadre OUVERT.
+
+   L'image, elle, est figée à la hauteur ouverte, et c'est le cadre qui la
+   découpe. Sans cela, « object-fit: cover » recalculerait son échelle pendant
+   les 900 ms : mesuré sur une fenêtre en portrait, la photo grossissait de
+   1,61 fois au lieu de rester immobile. Le cadre s'ouvre ; l'image ne bouge pas. */
+
+.scene--atelier { height: var(--hauteur-ouverte); }
+
+.scene--atelier picture,
+.scene--atelier .scene__image { height: var(--hauteur-ouverte); }
+
+/* Ancrée en haut : on voit d'abord la tête, et le mécanisme se découvre
+   en dessous à mesure que le bord bas descend. */
+.scene--atelier .scene__image { object-position: center top; }
+
+/* ---------- Le voile du téléphone part du bas ----------
+
+   Règle générale, trouvée par la mesure : QUAND LE TEXTE EST COLLÉ EN BAS,
+   LE VOILE DOIT L'ÊTRE AUSSI.
+
+   Un voile calé en pourcentages de la scène ne tient que si deux choses ne
+   bougent jamais : la hauteur de la scène, et la hauteur du texte. Les deux
+   bougent ici — le cadre des chapitres 1 et 5 change de hauteur, et la
+   longueur des lignes change quand on réécrit le récit. Chaque fois, la bande
+   de texte remontait dans la partie transparente du dégradé et le haut du
+   texte passait sous le seuil : 1:1 au chapitre 5, puis 1,9:1 au chapitre 1
+   après la réécriture. Deux fois le même défaut, deux fois invisible à l'œil.
+
+   Ancré sur le bas, le voile couvre la même hauteur de texte quelle que soit
+   la hauteur du cadre. Chaque scène déclare la sienne, mesurée à 390 px.
+   La colonne de gauche (≥ 52 rem) garde son voile horizontal : il couvre
+   déjà toute la hauteur, quel que soit le texte. */
+
+@media (max-width: 51.9375rem) {
+
+  .scene            { --bande-basse: 12rem;   }  /* légendes du chapitre 3 : 124 à 172 px */
+  .scene--hiver     { --bande-basse: 22.5rem; }  /* bande mesurée : 340 px */
+  .scene--nuit      { --bande-basse: 28rem;   }  /* bande mesurée : 427 px */
+  .scene--atelier   { --bande-basse: 27.5rem; }  /* bande mesurée : 420 px */
+
+  /* Le cadre fermé passe de 62 % à 78 % de la fenêtre — sur téléphone seulement,
+     et seulement pour les deux cadres qui bougent.
+     Mesure : à 390 × 844, la bande de texte du chapitre 1 fait 340 px et son
+     voile en occupe 484 avec son dégradé. À 62 % (523 px) il ne restait que
+     39 px de photo lisible : le village avait disparu sous le blanc. À 78 %
+     (658 px) il en reste 174. Sur écran posé, le texte est en colonne à gauche
+     et ne mange rien : 62 % y est conservé, comme dans la planche. */
+  .scene--hiver,
+  .scene--atelier   { --hauteur-fermee: 78vh; }
+
+  .scene__voile {
+    background:
+      /* le haut, pour la barre de navigation */
+      linear-gradient(to bottom, rgba(var(--voile-actif), 0.50) 0, rgba(var(--voile-actif), 0) 10%),
+      /* le bas, pour le texte */
+      linear-gradient(to top,
+        rgba(var(--voile-actif), 0.97) 0,
+        rgba(var(--voile-actif), 0.95) var(--bande-basse),
+        rgba(var(--voile-actif), 0.88) calc(var(--bande-basse) + 2rem),
+        rgba(var(--voile-actif), 0)    calc(var(--bande-basse) + 9rem));
+  }
+}
+
+/* ---------- Pied ---------- */
+
+.pied {
+  width: var(--colonne);
+  margin-inline: auto;
+  padding-block: clamp(4rem, 10vh, 7rem);
+  border-top: 1px solid var(--trait);
+}
+
+.pied__ligne { margin: 0 0 0.4rem; }
+.pied__ligne--faible { color: var(--encre-faible); text-transform: none; letter-spacing: 0; }
+
+/* =========================================================
+   LES MOUVEMENTS
+   L'état par défaut de chaque scène est déjà l'état d'arrivée.
+   Ces règles n'existent que pour donner un point de départ,
+   et seulement si recit.js s'est exécuté.
+   ========================================================= */
+
+/* Chapitre 1 — le cadre se ferme, du haut vers le bas. */
+
+.js-mouvement [data-mouvement="cadre-se-ferme"] {
+  height: var(--hauteur-ouverte);
+  transition: height 900ms ease-out;
+}
+
+.js-mouvement [data-mouvement="cadre-se-ferme"].est-actif { height: var(--hauteur-fermee); }
+
+/* Chapitre 5 — le même cadre, à l'envers : il se rouvre, du haut vers le bas.
+   Aucune ligne de JavaScript en plus : la section 3 de recit.js observe
+   tous les [data-mouvement] et pose « est-actif » au même déclencheur. */
+
+.js-mouvement [data-mouvement="cadre-se-rouvre"] {
+  height: var(--hauteur-fermee);
+  transition: height 900ms ease-out;
+}
+
+.js-mouvement [data-mouvement="cadre-se-rouvre"].est-actif { height: var(--hauteur-ouverte); }
+
+
+/* Chapitre 2 — aucune règle ici : le mouvement est la vidéo elle-même,
+   et c'est recit.js qui décide si elle joue (voir la section 2 du script). */
+
+/* Chapitre 3 — un seul cadre plein écran, les objets s'y remplacent.
+   Le cadre tient l'écran avec « sticky », comme la vidéo du chapitre 2 :
+   c'est le navigateur qui le garde en place pendant qu'on défile, sans
+   calcul d'avance. L'épinglage de ScrollTrigger, lui, gardait des positions
+   mesurées trop tôt et faisait sauter la vitrine au début et à la fin.
+   La section mesure quatre hauteurs d'écran : une pour le cadre,
+   trois pour les trois remplacements. */
+
+.js-vitrine .chapitre--vitrine {
+  height: 400vh;
+  height: 400svh;
+}
+
+.js-vitrine .vitrine__cadre {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+}
+
+/* Sur téléphone, le titre reste sur le fond de page, au-dessus du cadre :
+   posé en haut d'une photo, aucun voile ne garantirait son contraste sans
+   masquer l'image. Dès 52rem, il rejoint la colonne de gauche (plus bas). */
+.js-vitrine .vitrine__cadre > .chapitre__texte {
+  flex: none;
+  width: var(--bande);
+  margin-inline: auto;
+  padding: clamp(4.25rem, 11vh, 6rem) var(--marge) clamp(1rem, 2.5vh, 1.75rem);
+}
+
+.js-vitrine .vitrine {
+  display: block;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.js-vitrine .vitrine__objet {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 0;
+}
+
+.js-vitrine .vitrine__chute { display: none; }
+
+/* Le titre du chapitre 3 rejoint la colonne, à partir de 52rem.
+   Tant que le texte était en bas, le titre ne pouvait pas se poser sur la photo :
+   en haut d'une image, aucun voile ne tient le contraste sans masquer la photo.
+   Avec le voile sur le côté, la colonne de gauche est couverte sur toute sa hauteur :
+   le titre y tient, et le cadre gagne la bande de page qu'il occupait. */
+
+@media (min-width: 52rem) {
+
+  .js-vitrine .vitrine__cadre { display: block; }
+
+  /* Les objets remplissent tout le cadre, titre compris. */
+  .js-vitrine .vitrine { position: absolute; inset: 0; }
+
+  .js-vitrine .vitrine__cadre > .chapitre__texte {
+    position: absolute;
+    z-index: 2;                 /* au-dessus des objets et de leurs voiles */
+    inset: 0 auto auto 0;
+    width: var(--bande-scene);
+    margin: 0;
+    padding: clamp(4.25rem, 11vh, 6rem) var(--marge) 0;
+  }
+
+  /* Le numéro passe lui aussi au gris foncé : posé sur la photo, le gris de page
+     ne tenait que 5,3:1 (mesuré sur les quatre objets). */
+  .js-vitrine .vitrine__cadre > .chapitre__texte .chapitre__numero { color: var(--encre-faible-scene); }
+
+  /* La légende de l'objet se range juste sous le titre, dans la même colonne.
+     La hauteur du titre change avec la largeur — deux ou trois lignes —, donc
+     recit.js la mesure et la pose dans --haut-titre. La valeur de repli sert
+     seulement si la mesure manque. */
+  .js-vitrine .vitrine__legende {
+    justify-content: flex-start;
+    padding-top: calc(var(--haut-titre, 15rem) + 1.75rem);
+  }
+}
+
+/* ---------- Mouvements réduits ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html { scroll-behavior: auto; }
+
+  .js-mouvement [data-mouvement="cadre-se-ferme"],
+  .js-mouvement [data-mouvement="cadre-se-ferme"].est-actif {
+    height: var(--hauteur-fermee);
+    transition: none;
+  }
+
+  .js-mouvement [data-mouvement="cadre-se-rouvre"],
+  .js-mouvement [data-mouvement="cadre-se-rouvre"].est-actif {
+    height: var(--hauteur-ouverte);
+    transition: none;
+  }
+}
